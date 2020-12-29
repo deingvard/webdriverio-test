@@ -1,3 +1,13 @@
+let baseUrl;
+
+if (process.env.SERVER === 'prod'){
+    baseUrl = 'https://www.google.com';
+}else {
+    baseUrl = 'https://webdriveruniversity.com/';
+}
+
+let timeout = process.env.DEBUG ? 9999999999 : 15000;
+
 exports.config = {
     //
     // ====================
@@ -64,9 +74,13 @@ exports.config = {
     // Test Configurations
     // ===================
     // Define all options that are relevant for the WebdriverIO instance here
+
+    sync: true,
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'silent',
+
+    coloredLogs: true,
     //
     // Set specific log levels per logger
     // loggers:
@@ -90,7 +104,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://localhost',
+    baseUrl: baseUrl,
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -137,7 +151,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000
+        timeout: timeout
     },
     //
     // =====
@@ -181,8 +195,10 @@ exports.config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {Object}         browser      instance of created browser/device session
      */
-    // before: function (capabilities, specs) {
-    // },
+    before: function (capabilities, specs) {
+        expect = require('chai').expect;
+        should = require('chai').should();
+    },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name
