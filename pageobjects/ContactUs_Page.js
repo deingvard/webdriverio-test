@@ -1,9 +1,9 @@
 class ContactUs_Page{
-    get firstName() {return $("[name='first_name']")}
-    get lastName() {return $("[name='last_name']")}
-    get comments() {return $("textarea")}
-    get emailAddress() {return $("[name='email']")}
-    get submitButton() {return $("[type='submit']")}
+    get firstName() {return $("[name='first_name']");}
+    get lastName() {return $("[name='last_name']");}
+    get comments() {return $("textarea");}
+    get emailAddress() {return $("[name='email']");}
+    get submitButton() {return $("[type='submit']");}
 
     setFirstName(firstName){
         return this.firstName.setValue(firstName);

@@ -1,8 +1,11 @@
 const ContactUs_Page = require("../pageobjects/ContactUs_Page");
 
+beforeEach(()=>{
+    browser.url('/Contact-Us/contactus.html');
+})
+
 describe('webdriver.io page', () => {
     it('should be able to submit a successful submission via contact us form', () => {
-        browser.url('/Contact-Us/contactus.html')
         ContactUs_Page.setFirstName("Jane");
         ContactUs_Page.setLastName("Doe");
         ContactUs_Page.setComments("comments");
