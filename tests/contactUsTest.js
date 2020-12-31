@@ -6,6 +6,12 @@ beforeEach(() => {
 });
 
 describe("Test Contact Us form", () => {
+  it("should validate whether the webdriver uni homepage title is correct", () => {
+    browser.url("./");
+    const title = browser.getTitle();
+    assert.strictEqual(title, 'WebDriverUniversity.com');
+  });
+
   it("Test1: should be able to submit a successful submission via contact us form", () => {
     ContactUs_Page.submitAllInformationViaContactUsForm(
       "Jane",
