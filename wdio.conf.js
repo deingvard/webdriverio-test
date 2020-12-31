@@ -151,7 +151,8 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: timeout
+        timeout: timeout,
+        compilers: ['js:@babel/register']
     },
     //
     // =====
@@ -198,6 +199,7 @@ exports.config = {
     before: function (capabilities, specs) {
         expect = require('chai').expect;
         should = require('chai').should();
+        require('@babel/register');
     },
     /**
      * Runs before a WebdriverIO command gets executed.
