@@ -4,7 +4,6 @@
   "description": "Webdriverio v6 Test Automation Framework",
   "main": "index.js",
   "scripts": {
-    "selenium-server": "./node_modules/.bin/selenium-standalone start -- -port 7777",
     "test": "./node_modules/.bin/wdio wdio.conf.js"
   },
   "keywords": [

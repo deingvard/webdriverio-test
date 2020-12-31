@@ -1,3 +1,3 @@
-npm init
+**npm init**
 
-**npx wdio wdio.conf.js**
+**npm test**
