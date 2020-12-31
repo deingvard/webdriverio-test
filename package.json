@@ -1,14 +1,18 @@
 {
   "name": "webdriverio-test",
   "version": "1.0.0",
-  "description": "",
+  "description": "Webdriverio v6 Test Automation Framework",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "Webdriverio",
+    "Automation",
+    "Framework"
+  ],
   "author": "",
-  "license": "ISC",
+  "license": "",
   "devDependencies": {
     "@wdio/cli": "^6.10.11",
     "@wdio/dot-reporter": "^6.10.6",
@@ -21,6 +25,8 @@
     "chromedriver": "^87.0.4",
     "loglevel-plugin-prefix": "^0.8.4",
     "mocha": "^8.2.1",
+    "prettier": "2.2.1",
+    "selenium-standalone": "^6.23.0",
     "wdio-chromedriver-service": "^6.0.4"
   }
 }

@@ -52,14 +52,6 @@ class ContactUs_Page {
         }
         this.submitButton.click();
     }
-
-    // confirmSuccessfulSubmission() {
-    //     browser.waitUntil(() => {
-    //             return ((this.successfulSubmissionHeaderText) === 'Thank You for your Message!')
-    //         }
-    //         , {timeout: 5000, timeoutMsg: 'Successful Submission Message does not Exist!'});
-    // }
-
 }
 
 module.exports = new ContactUs_Page();
