@@ -1,23 +1,33 @@
 const ContactUs_Page = require("../pageobjects/ContactUs_Page");
+const assert = require('assert');
+
 
 beforeEach(() => {
     browser.url('/Contact-Us/contactus.html');
 })
 
-describe('webdriver.io page', () => {
-
+describe('Test Contact Us form', () => {
     it('Test1: should be able to submit a successful submission via contact us form', () => {
         ContactUs_Page.submitAllInformationViaContactUsForm('Jane', 'Doe', 'comments', "test@test.com");
-        ContactUs_Page.successfulSubmissionHeader.waitForDisplayed({timeout: 3000})
-        expect(ContactUs_Page.successfulSubmissionHeaderText).to.equal('Thank You for your Message!');
-    })
+        ContactUs_Page.successfulSubmissionHeader.waitForDisplayed({timeout: 3000});
+        try {
+            expect(ContactUs_Page.successfulSubmissionHeaderText).to.equal("Thank You for your Message!");
+        }catch (err){
+            console.log("Exception: " + err);
+            assert.fail();
+        }
+    });
 
     it('Test2: should not be able to submit a successful submission via contact us form as all fields are required', () => {
         ContactUs_Page.setFirstName("Jane");
         ContactUs_Page.setLastName("Doe");
         ContactUs_Page.setComments("comments");
         ContactUs_Page.clickSubmitButton();
-        console.log(ContactUs_Page.unsuccessfulSubmissionHeaderText);
-        expect(ContactUs_Page.unsuccessfulSubmissionHeaderText).to.have.string('Error: all fields are required');
+        try {
+            expect(ContactUs_Page.unsuccessfulSubmissionHeaderText).to.have.string("Error: all fields are required");
+        } catch (err){
+            console.log("Exception: " + err);
+            assert.fail();
+        }
     });
 });
