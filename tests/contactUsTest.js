@@ -2,6 +2,7 @@ const ContactUs_Page = require("../pageobjects/ContactUs_Page");
 const assert = require("assert");
 
 beforeEach(() => {
+  browser.maximizeWindow();
   browser.url("/Contact-Us/contactus.html");
 });
 

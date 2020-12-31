@@ -196,8 +196,8 @@ exports.config = {
      * @param {Object}         browser      instance of created browser/device session
      */
     before: function (capabilities, specs) {
-        expect = require('chai').expect;
         should = require('chai').should();
+        expect = require('chai').expect;
         require('@babel/register');
     },
     /**
