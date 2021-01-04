@@ -1,6 +1,10 @@
 import Page from "./Page";
 
 class ContactUsForm extends Page{
+    open() {
+        super.open("https://webdriveruniversity.com/Contact-Us/contactus.html");
+    }
+
     /**
      * define selectors using getter methods
      */
@@ -11,6 +15,7 @@ class ContactUsForm extends Page{
     get submitButton() {return $("[type='submit']");}
     get successfulSubmissionHeader(){return $("#contact_reply h1");}
     get unsuccessfulSubmissionHeader(){return $("body");}
+
     get successfulSubmissionHeaderText(){
         return this.successfulSubmissionHeader.getText(); // Thank You for your Message!
     }
@@ -56,4 +61,4 @@ class ContactUsForm extends Page{
     }
 }
 
-module.exports = new ContactUsForm();
+export default new ContactUsForm();

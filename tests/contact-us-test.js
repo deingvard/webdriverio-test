@@ -1,5 +1,4 @@
-const ContactUs_Page = require("../pageobjects/ContactUsForm");
-const Main_Page = require("../pageobjects/MainPage");
+import ContactUsForm from "../pageobjects/ContactUsForm";
 const assert = require("assert");
 const config = require("../config/main-config");
 let dataGenerators = require("../utils/dataGenerators");
@@ -20,18 +19,18 @@ describe("Test Contact Us page on webdriveruni", () => {
   });
 
   it("Test2: should be able to submit a successful submission via contact us page", () => {
-    Main_Page.navigateToContactUsPage();
-    ContactUs_Page.submitAllInformationViaContactUsForm(
+    ContactUsForm.open();
+    ContactUsForm.submitAllInformationViaContactUsForm(
       config.firstName,
       config.lastName,
       dataGenerators.generateRandomString(),
       dataGenerators.generateRandomEmailAddress()
     );
-    ContactUs_Page.successfulSubmissionHeader.waitForDisplayed({
+    ContactUsForm.successfulSubmissionHeader.waitForDisplayed({
       timeout: 3000,
     });
     try {
-      expect(ContactUs_Page.successfulSubmissionHeaderText).to.equal(
+      expect(ContactUsForm.successfulSubmissionHeaderText).to.equal(
         "Thank You for your Message!"
       );
     } catch (err) {
@@ -41,13 +40,13 @@ describe("Test Contact Us page on webdriveruni", () => {
   });
 
   it("Test3: should not be able to submit a successful submission via contact us form as all fields are required", () => {
-    Main_Page.navigateToContactUsPage();
-    ContactUs_Page.setFirstName(config.firstName);
-    ContactUs_Page.setLastName(config.lastName);
-    ContactUs_Page.setComments(config.comments);
-    ContactUs_Page.clickSubmitButton();
+    ContactUsForm.open();
+    ContactUsForm.setFirstName(config.firstName);
+    ContactUsForm.setLastName(config.lastName);
+    ContactUsForm.setComments(dataGenerators.generateRandomString());
+    ContactUsForm.clickSubmitButton();
     try {
-      expect(ContactUs_Page.unsuccessfulSubmissionHeaderText).to.have.string(
+      expect(ContactUsForm.unsuccessfulSubmissionHeaderText).to.have.string(
         "Error: all fields are required"
       );
     } catch (err) {
