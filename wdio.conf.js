@@ -1,12 +1,4 @@
-let baseUrl;
-
-if (process.env.SERVER === 'prod'){
-    baseUrl = 'https://www.google.com';
-}else {
-    baseUrl = 'https://webdriveruniversity.com/';
-}
-
-let timeout = process.env.DEBUG ? 9999999999 : 15000;
+const config = require('./config/main-config');
 
 exports.config = {
     //
@@ -64,7 +56,7 @@ exports.config = {
         // 5 instances get started at a time.
         maxInstances: 5,
         //
-        browserName: 'chrome',
+        browserName: config.browser,
         "goog:chromeOptions": {
             args: ["--incognito"]
         },
@@ -83,7 +75,7 @@ exports.config = {
     sync: true,
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'silent',
+    logLevel: config.logLevel,
 
     coloredLogs: true,
     //
@@ -109,10 +101,10 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: baseUrl,
+    baseUrl: config.baseUrl,
     //
     // Default timeout for all waitFor* commands.
-    waitforTimeout: 10000,
+    waitforTimeout: config.timeout,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
@@ -153,7 +145,7 @@ exports.config = {
     // See the full list at http://mochajs.org/
     mochaOpts: {
         ui: 'bdd',
-        timeout: timeout,
+        timeout: config.timeout,
         compilers: ['js:@babel/register']
     },
     //
@@ -202,12 +194,31 @@ exports.config = {
         require('@babel/register');
         should = require('chai').should();
         expect = require('chai').expect;
+
         browser.addCommand("getUrlAndTitle", function (){
             // 'this' refers to the 'browser' scope
             return {
                 url: this.getUrl(),
                 title: this.getTitle()
             };
+        });
+
+        browser.addCommand("waitAndClick", function (selector){
+            try {
+                $(selector).waitForExist();
+                $(selector).click();
+            }catch (Error){
+                throw new Error("Could not click on selector: " + $(selector));
+            }
+        });
+
+        browser.addCommand("waitAndSendkeys", function (selector, keys){
+            try {
+                $(selector).waitForExist();
+                $(selector).setValue(keys);
+            }catch (Error){
+                throw new Error("Could not send keys: " + $(keys) + ", using selector: " + $(selector));
+            }
         });
     },
     /**

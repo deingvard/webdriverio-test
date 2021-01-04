@@ -1,6 +1,7 @@
 const ContactUs_Page = require("../pageobjects/ContactUsForm");
 const Main_Page = require("../pageobjects/MainPage");
 const assert = require("assert");
+const config = require("../config/main-config");
 
 describe("Test Contact Us page on webdriveruni", () => {
   beforeEach(() => {
@@ -20,10 +21,10 @@ describe("Test Contact Us page on webdriveruni", () => {
   it("Test2: should be able to submit a successful submission via contact us page", () => {
     Main_Page.navigateToContactUsPage();
     ContactUs_Page.submitAllInformationViaContactUsForm(
-      "Jane",
-      "Doe",
-      "comments",
-      "test@test.com"
+      config.firstName,
+      config.lastName,
+      config.comments,
+      config.emailAddress
     );
     ContactUs_Page.successfulSubmissionHeader.waitForDisplayed({
       timeout: 3000,
@@ -39,18 +40,18 @@ describe("Test Contact Us page on webdriveruni", () => {
   });
 
   it("Test3: should not be able to submit a successful submission via contact us form as all fields are required", () => {
-      Main_Page.navigateToContactUsPage();
-      ContactUs_Page.setFirstName("Jane");
-      ContactUs_Page.setLastName("Doe");
-      ContactUs_Page.setComments("comments");
-      ContactUs_Page.clickSubmitButton();
-      try {
-        expect(ContactUs_Page.unsuccessfulSubmissionHeaderText).to.have.string(
-          "Error: all fields are required"
-        );
-      } catch (err) {
-        console.log("Exception: " + err);
-        assert.fail();
-      }
+    Main_Page.navigateToContactUsPage();
+    ContactUs_Page.setFirstName(config.firstName);
+    ContactUs_Page.setLastName(config.lastName);
+    ContactUs_Page.setComments(config.comments);
+    ContactUs_Page.clickSubmitButton();
+    try {
+      expect(ContactUs_Page.unsuccessfulSubmissionHeaderText).to.have.string(
+        "Error: all fields are required"
+      );
+    } catch (err) {
+      console.log("Exception: " + err);
+      assert.fail();
+    }
   });
 });
