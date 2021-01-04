@@ -1,4 +1,7 @@
 import Page from "./Page";
+const config = require("../config/main-config");
+let dataGenerators = require("../utils/dataGenerators");
+
 
 class ContactUsForm extends Page{
     open() {
@@ -36,10 +39,6 @@ class ContactUsForm extends Page{
         return this.comments.setValue(comments);
     }
 
-    setEmailAddress(emailAddress) {
-        return this.emailAddress.setValue(emailAddress);
-    }
-
     clickSubmitButton() {
         return this.submitButton.click();
     }
@@ -58,6 +57,16 @@ class ContactUsForm extends Page{
             this.emailAddress.setValue(emailAddress);
         }
         this.submitButton.click();
+    }
+
+    successfulContactUsSubmission(){
+        this.firstName.waitForDisplayed(5000);
+        this.firstName.setValue(config.firstName);
+        this.lastName.setValue(config.lastName);
+        this.emailAddress.setValue(dataGenerators.generateRandomEmailAddress());
+        this.comments.setValue(dataGenerators.generateRandomString());
+        this.submitButton.click();
+        expect(this.successfulSubmissionHeaderText).to.equal("Thank You for your Message!");
     }
 }
 
