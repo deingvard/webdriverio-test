@@ -4,10 +4,6 @@ let dataGenerators = require("../utils/dataGenerators");
 
 
 class ContactUsForm extends Page{
-    open() {
-        super.open("https://webdriveruniversity.com/Contact-Us/contactus.html");
-    }
-
     /**
      * define selectors using getter methods
      */
@@ -19,6 +15,16 @@ class ContactUsForm extends Page{
     get successfulSubmissionHeader(){return $("#contact_reply h1");}
     get unsuccessfulSubmissionHeader(){return $("body");}
 
+    /**
+     * define or overwrite page methods
+     */
+    open() {
+        super.open("https://webdriveruniversity.com/Contact-Us/contactus.html");
+    }
+
+    /**
+     * your page specific methods
+     */
     get successfulSubmissionHeaderText(){
         return this.successfulSubmissionHeader.getText(); // Thank You for your Message!
     }
