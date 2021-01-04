@@ -199,9 +199,16 @@ exports.config = {
      * @param {Object}         browser      instance of created browser/device session
      */
     before: function (capabilities, specs) {
+        require('@babel/register');
         should = require('chai').should();
         expect = require('chai').expect;
-        require('@babel/register');
+        browser.addCommand("getUrlAndTitle", function (){
+            // 'this' refers to the 'browser' scope
+            return {
+                url: this.getUrl(),
+                title: this.getTitle()
+            };
+        });
     },
     /**
      * Runs before a WebdriverIO command gets executed.

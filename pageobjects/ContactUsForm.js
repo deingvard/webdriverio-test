@@ -1,7 +1,8 @@
-class ContactUs_Page {
+class ContactUsForm {
     /**
      * define selectors using getter methods
      */
+
     get firstName() {return $("[name='first_name']");}
     get lastName() {return $("[name='last_name']");}
     get comments() {return $("textarea");}
@@ -54,4 +55,4 @@ class ContactUs_Page {
     }
 }
 
-module.exports = new ContactUs_Page();
+module.exports = new ContactUsForm();
