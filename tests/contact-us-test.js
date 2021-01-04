@@ -2,6 +2,7 @@ const ContactUs_Page = require("../pageobjects/ContactUsForm");
 const Main_Page = require("../pageobjects/MainPage");
 const assert = require("assert");
 const config = require("../config/main-config");
+let dataGenerators = require("../utils/dataGenerators");
 
 describe("Test Contact Us page on webdriveruni", () => {
   beforeEach(() => {
@@ -23,8 +24,8 @@ describe("Test Contact Us page on webdriveruni", () => {
     ContactUs_Page.submitAllInformationViaContactUsForm(
       config.firstName,
       config.lastName,
-      config.comments,
-      config.emailAddress
+      dataGenerators.generateRandomString(),
+      dataGenerators.generateRandomEmailAddress()
     );
     ContactUs_Page.successfulSubmissionHeader.waitForDisplayed({
       timeout: 3000,

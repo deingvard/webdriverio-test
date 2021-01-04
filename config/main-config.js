@@ -4,7 +4,5 @@ module.exports = {
     logLevel: 'info',
     firstName: 'Joe',
     lastName: 'Doe',
-    comments: 'comments',
-    emailAddress: 'test@test.com',
     timeout: 15000
 }

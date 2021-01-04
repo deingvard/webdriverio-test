@@ -1,8 +1,9 @@
-class ContactUsForm {
+import Page from "./Page";
+
+class ContactUsForm extends Page{
     /**
      * define selectors using getter methods
      */
-
     get firstName() {return $("[name='first_name']");}
     get lastName() {return $("[name='last_name']");}
     get comments() {return $("textarea");}
