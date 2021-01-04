@@ -1,19 +1,19 @@
 const ContactUs_Page = require("../pageobjects/ContactUs_Page");
 const assert = require("assert");
 
-beforeEach(() => {
-  browser.maximizeWindow();
-  browser.url("/Contact-Us/contactus.html");
-});
-
 describe("Test Contact Us form", () => {
-  it("should validate whether the webdriver uni homepage title is correct", () => {
+  beforeEach(() => {
+    browser.maximizeWindow();
+    browser.url("/Contact-Us/contactus.html");
+  });
+
+  it("Test1: should validate whether the webdriver uni homepage title is correct", () => {
     browser.url("./");
     const title = browser.getTitle();
     assert.strictEqual(title, "WebDriverUniversity.com");
   });
 
-  it("Test1: should be able to submit a successful submission via contact us form", () => {
+  it("Test2: should be able to submit a successful submission via contact us form", () => {
     ContactUs_Page.submitAllInformationViaContactUsForm(
       "Jane",
       "Doe",
@@ -33,7 +33,7 @@ describe("Test Contact Us form", () => {
     }
   });
 
-  it("Test2: should not be able to submit a successful submission via contact us form as all fields are required", () => {
+  it("Test3: should not be able to submit a successful submission via contact us form as all fields are required", () => {
     ContactUs_Page.setFirstName("Jane");
     ContactUs_Page.setLastName("Doe");
     ContactUs_Page.setComments("comments");
