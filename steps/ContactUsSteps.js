@@ -1,5 +1,5 @@
 import { contactUsForm } from "../pageobjects/ContactUsForm";
-const config = require("../config/main-config");
+const config = require("../data/main-config");
 
 
 class ContactUsSteps {
@@ -25,18 +25,34 @@ class ContactUsSteps {
         return contactUsForm.unsuccessfulSubmissionHeader.getText(); // Error: all fields are required Error: Invalid email address
     }
 
+    /**
+     * Enter data on the Contact us form
+     * @param firstName
+     */
     enterFirstName(firstName) {
         return contactUsForm.firstName.setValue(firstName);
     }
 
+    /**
+     * Enter data on the Contact us form
+     * @param lastName
+     */
     enterLastName(lastName) {
         return contactUsForm.lastName.setValue(lastName);
     }
 
+    /**
+     * Enter data on the Contact us form
+     * @param comments
+     */
     enterComments(comments) {
         return contactUsForm.comments.setValue(comments);
     }
 
+    /**
+     * Enter data on the Contact us form
+     * @param email
+     */
     enterEmail(email) {
         return contactUsForm.emailAddress.setValue(email);
     }

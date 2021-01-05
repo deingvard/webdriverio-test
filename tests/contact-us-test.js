@@ -1,5 +1,5 @@
 import {contactUsSteps} from "../steps/ContactUsSteps";
-const config = require("../config/main-config");
+const config = require("../data/main-config");
 let dataGenerators = require("../utils/dataGenerators");
 
 
