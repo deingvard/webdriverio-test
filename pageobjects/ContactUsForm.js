@@ -1,9 +1,5 @@
-import Page from "./Page";
-const config = require("../config/main-config");
-let dataGenerators = require("../utils/dataGenerators");
 
-
-class ContactUsForm extends Page{
+class ContactUsForm {
     /**
      * define selectors using getter methods
      */
@@ -15,65 +11,6 @@ class ContactUsForm extends Page{
     get successfulSubmissionHeader(){return $("#contact_reply h1");}
     get unsuccessfulSubmissionHeader(){return $("body");}
 
-    /**
-     * define or overwrite page methods
-     */
-    open() {
-        super.open("https://webdriveruniversity.com/Contact-Us/contactus.html");
-    }
-
-    /**
-     * your page specific methods
-     */
-    get successfulSubmissionHeaderText(){
-        return this.successfulSubmissionHeader.getText(); // Thank You for your Message!
-    }
-
-    get unsuccessfulSubmissionHeaderText(){
-        return this.unsuccessfulSubmissionHeader.getText(); // Error: all fields are required Error: Invalid email address
-    }
-
-    setFirstName(firstName) {
-        return this.firstName.setValue(firstName);
-    }
-
-    setLastName(lastName) {
-        return this.lastName.setValue(lastName);
-    }
-
-    setComments(comments) {
-        return this.comments.setValue(comments);
-    }
-
-    clickSubmitButton() {
-        return this.submitButton.click();
-    }
-
-    submitAllInformationViaContactUsForm(firstName, lastName, comments, emailAddress) {
-        if (firstName) {
-            this.firstName.setValue(firstName);
-        }
-        if (lastName) {
-            this.lastName.setValue(lastName);
-        }
-        if (comments) {
-            this.comments.setValue(comments);
-        }
-        if (emailAddress) {
-            this.emailAddress.setValue(emailAddress);
-        }
-        this.submitButton.click();
-    }
-
-    successfulContactUsSubmission(){
-        this.firstName.waitForDisplayed(5000);
-        this.firstName.setValue(config.firstName);
-        this.lastName.setValue(config.lastName);
-        this.emailAddress.setValue(dataGenerators.generateRandomEmailAddress());
-        this.comments.setValue(dataGenerators.generateRandomString());
-        this.submitButton.click();
-        expect(this.successfulSubmissionHeaderText).to.equal("Thank You for your Message!");
-    }
 }
 
-export default new ContactUsForm();
+export const contactUsForm = new ContactUsForm();
