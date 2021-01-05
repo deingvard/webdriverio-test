@@ -6,7 +6,7 @@ let dataGenerators = require("../utils/dataGenerators");
 
 describe("Test Contact Us page on webdriveruni", () => {
   beforeEach(() => {
-    contactUsSteps.open();
+    contactUsSteps.navigateToContactUsFormDirect();
   });
 
   it('Test 1: Submit all information via contact us page', () => {

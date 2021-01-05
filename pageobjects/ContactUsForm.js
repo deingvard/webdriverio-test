@@ -10,7 +10,6 @@ class ContactUsForm {
     get submitButton() {return $("[type='submit']");}
     get successfulSubmissionHeader(){return $("#contact_reply h1");}
     get unsuccessfulSubmissionHeader(){return $("body");}
-
 }
 
 export const contactUsForm = new ContactUsForm();

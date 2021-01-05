@@ -1,16 +1,16 @@
 import { contactUsForm } from "../pageobjects/ContactUsForm";
-import Page from "../pageobjects/Page";
 const config = require("../config/main-config");
 const dataGenerators = require("../utils/dataGenerators");
 
-class ContactUsSteps extends Page{
-    /**
-     * define or overwrite page methods
-     */
-    open() {
-        super.open("https://webdriveruniversity.com/Contact-Us/contactus.html");
-    }
 
+class ContactUsSteps {
+    /**
+     * Navigate Contact us form
+     */
+    navigateToContactUsFormDirect() {
+        browser.maximizeWindow();
+        browser.url(config.baseUrl + "/Contact-Us/contactus.html");
+    }
 
     get successfulSubmissionHeaderText() {
         return contactUsForm.successfulSubmissionHeader.getText(); // Thank You for your Message!
@@ -41,13 +41,13 @@ class ContactUsSteps extends Page{
             contactUsForm.firstName.setValue(firstName);
         }
         if (lastName) {
-        contactUsForm.lastName.setValue(lastName);
+            contactUsForm.lastName.setValue(lastName);
         }
         if (comments) {
-        contactUsForm.comments.setValue(comments);
+            contactUsForm.comments.setValue(comments);
         }
         if (emailAddress) {
-        contactUsForm.emailAddress.setValue(emailAddress);
+            contactUsForm.emailAddress.setValue(emailAddress);
         }
         contactUsForm.submitButton.click();
     }
