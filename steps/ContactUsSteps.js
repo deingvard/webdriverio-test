@@ -8,21 +8,21 @@ class ContactUsSteps {
      */
     navigateToContactUsFormDirect() {
         browser.maximizeWindow();
-        browser.url(config.baseUrl + "/Contact-Us/contactus.html");
+        browser.url(`${config.baseUrl}/Contact-Us/contactus.html`);
     }
 
     /**
      * Get successful submission header text
      */
     get successfulSubmissionHeaderText() {
-        return contactUsForm.successfulSubmissionHeader.getText(); // Thank You for your Message!
+        return contactUsForm.successfulSubmissionHeaderText.getText(); // Thank You for your Message!
     }
 
     /**
      * Get unsuccessful submission header text
      */
     get unsuccessfulSubmissionHeaderText() {
-        return contactUsForm.unsuccessfulSubmissionHeader.getText(); // Error: all fields are required Error: Invalid email address
+        return contactUsForm.unsuccessfulSubmissionHeaderText.getText(); // Error: all fields are required Error: Invalid email address
     }
 
     /**
@@ -30,7 +30,7 @@ class ContactUsSteps {
      * @param firstName
      */
     enterFirstName(firstName) {
-        return contactUsForm.firstName.setValue(firstName);
+        return contactUsForm.firstNameInput.setValue(firstName);
     }
 
     /**
@@ -46,7 +46,7 @@ class ContactUsSteps {
      * @param comments
      */
     enterComments(comments) {
-        return contactUsForm.comments.setValue(comments);
+        return contactUsForm.commentsInput.setValue(comments);
     }
 
     /**
@@ -54,7 +54,7 @@ class ContactUsSteps {
      * @param email
      */
     enterEmail(email) {
-        return contactUsForm.emailAddress.setValue(email);
+        return contactUsForm.emailAddressInput.setValue(email);
     }
 
     /**
